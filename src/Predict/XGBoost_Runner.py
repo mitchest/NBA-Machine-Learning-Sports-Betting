@@ -93,4 +93,6 @@ def xgb_runner(data, todays_games_uo, frame_ml, games, home_team_odds, away_team
         print(away_team + ' EV: ' + expected_value_colors['away_color'] + str(ev_away) + Style.RESET_ALL + (bankroll_fraction_away if kelly_criterion else ''))
         count += 1
 
+    return ml_predictions_array
+    
     deinit()
