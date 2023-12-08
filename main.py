@@ -128,7 +128,7 @@ def main():
         print("------------Neural Network Model Predictions-----------")
         nn_obj = NN_Runner.nn_runner(data, todays_games_uo, frame_ml, games, home_team_odds, away_team_odds, args.kc)
         print("-------------------------------------------------------")
-        return [xgb_obj, nn_obj], data, todays_games_uo, frame_ml, home_team_odds, away_team_odds]
+        return [xgb_obj, nn_obj], data, todays_games_uo, frame_ml, home_team_odds, away_team_odds
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Model to Run')
