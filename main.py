@@ -114,12 +114,12 @@ def main():
         data = tf.keras.utils.normalize(data, axis=1)
         nn_obj = NN_Runner.nn_runner(data, todays_games_uo, frame_ml, games, home_team_odds, away_team_odds, args.kc)
         print("-------------------------------------------------------")
-        return nn_obj
+        return nn_obj, data, todays_games_uo, frame_ml, home_team_odds, away_team_odds
     if args.xgb:
         print("---------------XGBoost Model Predictions---------------")
         xgb_obj = XGBoost_Runner.xgb_runner(data, todays_games_uo, frame_ml, games, home_team_odds, away_team_odds, args.kc)
         print("-------------------------------------------------------")
-        return xgb_obj
+        return xgb_obj, data, todays_games_uo, frame_ml, home_team_odds, away_team_odds
     if args.A:
         print("---------------XGBoost Model Predictions---------------")
         xgb_obj = XGBoost_Runner.xgb_runner(data, todays_games_uo, frame_ml, games, home_team_odds, away_team_odds, args.kc)
@@ -128,7 +128,7 @@ def main():
         print("------------Neural Network Model Predictions-----------")
         nn_obj = NN_Runner.nn_runner(data, todays_games_uo, frame_ml, games, home_team_odds, away_team_odds, args.kc)
         print("-------------------------------------------------------")
-        return [xgb_obj, nn_obj]
+        return [xgb_obj, nn_obj], data, todays_games_uo, frame_ml, home_team_odds, away_team_odds]
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Model to Run')
@@ -138,4 +138,4 @@ if __name__ == "__main__":
     parser.add_argument('-odds', help='Sportsbook to fetch from. (fanduel, draftkings, betmgm, pointsbet, caesars, wynn, bet_rivers_ny')
     parser.add_argument('-kc', action='store_true', help='Calculates percentage of bankroll to bet based on model edge')
     args = parser.parse_args()
-    mod_obj = main()
+    mod_obj, data, todays_games_uo, frame_ml, home_team_odds, away_team_odds = main()
